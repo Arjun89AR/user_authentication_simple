@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Login </title>
+{% endblock title %}
+
+{% block content %}
+    <div class = "container my-5 d-flex justify-content-center flex-column ">
+        <div class="container ">
+            <h1>Login now</h1>
+        <form method='post' style="max-width:400px;" class="my-5">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ messages.tags }} alert-dismissble fade show text-primary" role="alert" >
+                        {{ message }}
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>        
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            {{ login_form | crispy }}
+            <button class="btn btn-primary"> Log in</button>
+        </form>
+    </div>
+    <div>
+        <p>Dont't have an account...
+            <a href={% url 'register' %}>Create an account</a>
+        </p>
+    </div>
+<div>
+{% endblock content %}
+
+
+
